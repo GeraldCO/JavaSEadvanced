@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"com.gerald.amazonviewer.db"},{"l":"com.gerald.amazonviewer.model"},{"l":"com.gerald.util"},{"l":"com.geralden.amazonviewer"}]
