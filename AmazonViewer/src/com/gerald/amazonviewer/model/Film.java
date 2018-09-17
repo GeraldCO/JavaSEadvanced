@@ -2,13 +2,32 @@ package com.gerald.amazonviewer.model;
 
 import java.util.Date;
 
-public class Film{
+/**
+ * <h1> Fil es una clase abstracta </h1>
+ * 
+ * p>
+ * Es la clase base de la familia Films, como es 
+ * abstracta no se puede instanciar y por ende 
+ * contiene el método abstracto 
+ * {@code view()} que es obligatorio implementar 
+ * para todo aquél que pertenezca a la familia.
+ * 
+ * @author gerald
+ * @version 1.1
+ * @since 2018
+ * 
+ * 
+ * */
+
+public abstract class Film{
 	private  String title;
 	private  String genre;
 	private  String creator;
 	private  int duration;
 	private  short year;
 	private  boolean viewed;
+	
+	public Film() {}
 	
 	public Film(String title, String genre, String creator, int duration){
 		super();
@@ -58,6 +77,10 @@ public class Film{
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;
 	}
+	/*
+	 * {@code view()} es un metodo abstracto obligatorio de implementar
+	 * **/
+	public abstract void view();
 		
 	
 
