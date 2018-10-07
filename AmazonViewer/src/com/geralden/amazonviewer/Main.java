@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.gerald.amazonviewer.model.Book;
 import com.gerald.amazonviewer.model.Chapter;
@@ -105,9 +106,13 @@ public class Main {
 			System.out.println(":: MOVIES ::");
 			System.out.println();
 			
-			for(int i=0; i< movies.size(); i++) {
-				System.out.println(i+1 + ". "+ movies.get(i).getTitle()+ ", Visto: "+ movies.get(i).isViewed());
-			}
+			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			movies.forEach(m -> System.out.println(atomicInteger.getAndIncrement()+ ". "+ m.getTitle()+ ", Visto: "+ m.isViewed()));
+			
+//			for(int i=0; i< movies.size(); i++) {
+	//			System.out.println(i+1 + ". "+ movies.get(i).getTitle()+ ", Visto: "+ movies.get(i).isViewed());
+		//	}
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
@@ -243,14 +248,18 @@ public class Main {
 		report.setNameFile("reporte");
 		report.setExtension("txt");
 		report.setTitle(":: VISTOS ::");
-		String contentReport = "";
+		StringBuilder contentReport = new StringBuilder();
 		
-		for (Movie movie : movies) {
+		movies.stream()
+		.filter(m -> m.getIsViewed())
+		.forEach(m -> contentReport.append(m.toString()+"\n"));
+		
+		/*for (Movie movie : movies) {
 			if(movie.getIsViewed()) {
 				contentReport += movie.toString()+"\n";
 			}			
-		}
-		report.setContent(contentReport);
+		}*/
+		report.setContent(contentReport.toString());
 		report.makeReport();		
 	}
 	
